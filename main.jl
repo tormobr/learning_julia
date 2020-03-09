@@ -37,4 +37,5 @@ a = [i for i=0:10]
 print(a, "\n")
 print(sum(i for i=0:10), "\n")
 
-
+s = "hello this is a test"
+print(split(s), "\n")
