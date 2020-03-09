@@ -23,7 +23,18 @@ for row in a
 end
 
 
-
 for row in a
     print(row, "\n")
 end
+
+# Sum of list
+for row in a
+    print(sum(row), "\n")
+end
+
+# List comprehensions 
+a = [i for i=0:10]
+print(a, "\n")
+print(sum(i for i=0:10), "\n")
+
+
