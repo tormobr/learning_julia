@@ -76,3 +76,6 @@ println("var args( 1,2,3,4,5,6) = ", varargs(1,2,3,4,5,6))
 # simple map example with lambda function
 println(map(x-> x^2, [1,2,3]))
 
+# some matrix calculating with time and stuff
+include("mm.jl")
+
