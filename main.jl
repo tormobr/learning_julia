@@ -36,6 +36,7 @@ end
 a = [i for i=0:10]
 println(a)
 println(sum(i for i=0:10))
+println("reverse sort ", sort(a, rev=true))
 
 # Some string stuff here..
 s = "hello this is a test"
@@ -47,3 +48,4 @@ println(ss2)
 s = "1,2,3,4,5,6"
 sum_of_string = sum([parse(Int64, c) for c in split(s, ",")])
 println(sum_of_string)
+
