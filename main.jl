@@ -79,3 +79,35 @@ println(map(x-> x^2, [1,2,3]))
 # some matrix calculating with time and stuff
 include("mm.jl")
 
+# pushing and popping
+a = []
+push!(a, 1)
+push!(a, 2)
+push!(a, 3)
+push!(a, 4)
+println(a)
+pop!(a)
+println(a)
+popfirst!(a)
+println(a)
+
+# Dicts
+d = Dict("tormod"=>10, "hax" => 12, "strudel"=> 100)
+println(d)
+println(d["tormod"])
+println(keys(d))
+println(values(d))
+println(haskey(d, "tormod"))
+println(haskey(d, "sdf"))
+push!(d, "hacxor"=>123)
+println(d)
+
+# set
+a = [1,2,3,4,5,1,1,1,1]
+b = [4,5,6,7,8,9]
+set_a = Set(a)
+set_b = Set(b)
+println(set_a)
+
+println(5 in set_a)
+println(100 in set_a)

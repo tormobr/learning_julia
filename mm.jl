@@ -32,7 +32,7 @@ function transpose(a, n)
     return ret
 end
 
-n = 800
+n = 100
 a = rand(n, n)
 
 @time mm(a, a, n)
