@@ -1,25 +1,21 @@
-
-function BFS(start_i, start_j, arr, limits)
+using DataStructures
+function BFS(start, arr, limits)
     dirs = [(1,0), (-1,0), (0,1),(0,-1)]
-    visited = Set()
-    q = []
-    push!(q, (start_i, start_j))  # init queue to start pos
+    visited = Set{Tuple{Int64, Int64}}()
+    q = Array{Tuple{Int64, Int64}}([])
+    push!(q, start)
     count = 0
 
-    # while something in queue
     while ! isempty(q)
         current = popfirst!(q)
-        c_i, c_j = current[1], current[2]
-        # if we have visited this before
+        c_i, c_j = current
         if arr[c_i, c_j] != 1 || current in visited
             continue
         end
 
-        #visited.add(current)
         push!(visited, (current))
         count += 1
 
-        # Loop over neighbours and add to queue
         for (di, dj) in dirs
             push!(q, (c_i + di, c_j + dj))
         end
@@ -48,10 +44,10 @@ function DFS(i, j, arr, limits, visited, depth)
 end
 """
 
-max_x = 2000
-max_y = 2000
+max_x = 10000
+max_y = 10000
 shift = 2
-border_length = 1200
+border_length = 1000
 arr = ones(Int8, max_y, max_x)
 
 i1 = [shift for i=1:border_length]
@@ -75,7 +71,7 @@ for s in limits
     end
 end
 
-@time ret = BFS(shift+5,shift+5, arr, limits)
+@time ret = BFS((shift+5,shift+5), arr, limits)
 println(ret)
 #visited = Set()
 #@time ret = DFS(shift+5,shift+5, arr, limits)
