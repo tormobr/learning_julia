@@ -28,11 +28,31 @@ function BFS(start_i, start_j, arr, limits)
     return count
 end
 
-max_x = 1000
-max_y = 1000
+
+
+"""
+function DFS(i, j, arr, limits, visited, depth)
+    dirs = [(1,0), (-1,0), (0,1),(0,-1)]
+    if (i, j) in visited || arr[i, j] != 1
+        return 0
+    end
+
+    push!(visited, (i, j))
+    count = 0
+    for (di, dj) in dirs
+        count += DFS(i+di, j+dj, arr, limits, visited, depth+1)
+    end
+
+    return count + 1
+        
+end
+"""
+
+max_x = 2000
+max_y = 2000
 shift = 2
-border_length = 800
-arr = ones(Int32, max_y, max_x)
+border_length = 1200
+arr = ones(Int8, max_y, max_x)
 
 i1 = [shift for i=1:border_length]
 j1 = [i for i=shift:shift+border_length]
@@ -57,3 +77,6 @@ end
 
 @time ret = BFS(shift+5,shift+5, arr, limits)
 println(ret)
+#visited = Set()
+#@time ret = DFS(shift+5,shift+5, arr, limits)
+#println(ret)
