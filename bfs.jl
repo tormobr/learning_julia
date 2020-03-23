@@ -1,23 +1,28 @@
 using DataStructures
+using BenchmarkTools
 function BFS(start, arr, limits)
     dirs = [(1,0), (-1,0), (0,1),(0,-1)]
     visited = Set{Tuple{Int64, Int64}}()
-    q = Array{Tuple{Int64, Int64}}([])
+    q = Deque{Tuple{Int64, Int64}}()
+    push!(visited, start)
     push!(q, start)
     count = 0
 
     while ! isempty(q)
         current = popfirst!(q)
         c_i, c_j = current
-        if arr[c_i, c_j] != 1 || current in visited
+        if arr[c_i, c_j] != 1
             continue
         end
 
-        push!(visited, (current))
         count += 1
 
         for (di, dj) in dirs
-            push!(q, (c_i + di, c_j + dj))
+            new = (c_i +di, c_j + dj)
+            if !(new in visited)
+                push!(q, (new))
+                push!(visited, (new))
+            end
         end
     end
 
@@ -44,10 +49,10 @@ function DFS(i, j, arr, limits, visited, depth)
 end
 """
 
-max_x = 10000
-max_y = 10000
+max_x = 3000
+max_y = 3000
 shift = 2
-border_length = 1000
+border_length = 800
 arr = ones(Int8, max_y, max_x)
 
 i1 = [shift for i=1:border_length]
@@ -71,8 +76,7 @@ for s in limits
     end
 end
 
-@time ret = BFS((shift+5,shift+5), arr, limits)
-println(ret)
+@btime BFS((shift+5,shift+5), arr, limits)
 #visited = Set()
 #@time ret = DFS(shift+5,shift+5, arr, limits)
 #println(ret)
